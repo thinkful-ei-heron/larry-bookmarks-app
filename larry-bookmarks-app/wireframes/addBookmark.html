@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Bookmark App">
+    <title>Bookmark Application</title>
+    <link rel="shortcut icon" href="#">
+    <link href="styles.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+    <header role="banner">
+      <h1 class="mainHeader">Add Bookmark</h1>
+    </header>
+
+    <main role="main" class="js-mainAddBookmark" aria-live="assertive">
+      <form class="addBookmarkForm">
+        <fieldset name="formField">
+          <label for="newBookName">Add New Bookmark:</label>
+          <input type="text" name="newBookName" placeholder="http://www.newsite.com"><br>
+          <label for="newBookNick">Nickname:</label>
+          <input type="text" name="newBookName" placeholder="Nickname"><br>
+          <label for="newBookDesc">Description:</label>
+          <input type="text" name="newBookDesc" placeholder="Description"><br>
+          <label for="addFilter">Star Rating: </label><br>          
+          <select id="js-addFilter" name="addFilter">
+            <option value="" selected="selected">Filter</option>            
+            <option value="oneStar">One Star</option>
+            <option value="twoStar">Two Star</option>
+            <option value="threeStar">Three Star</option>
+            <option value="fourStar">Four Star</option>
+            <option value="fiveStar">Five Star</option>                                                
+          </select><br>
+          <button class="buttonAddSubmit" type="submit">Submit</button>
+          <button class="buttonAddCancel" type="reset">Cancel</button>
+          <br><a href="./formError.html">formError.html</a>                    
+        </fieldset>
+      </form>
+      <br><a href="./index.html">index.html</a>
+    </main>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  </body>
+</html>

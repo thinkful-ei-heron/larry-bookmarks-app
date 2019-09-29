@@ -1,0 +1,135 @@
+/***  Minimum viewport 320px mobile portrait  ***/
+
+* {
+  box-sizing: border-box;
+  font-size: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+}
+
+.mainHeader {
+  width: 250px;
+  height: 100px;
+  padding: 38px 0;
+  text-align: center;
+}
+
+h1 {
+  font-size: 24px;
+}
+
+body {
+  display: flex;
+
+}
+
+.js-mainWindow {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 275px;
+  height: 600px;
+  border-color: black;
+  border-style: solid;
+  border-width: 2px;
+}
+
+h2, p, fieldset, input, button {
+  font-size: 18px;
+}
+
+.mealForm input {
+  display: inline-block;
+  width: 150px;
+}
+
+.mealForm button {
+  display: inline-block;
+  width: 150px;
+}
+
+.leftPanel {
+  width: 150px;
+  border-color: black;
+  border-style: solid;
+  border-width: 2px;
+}
+
+.rightPanel {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  width: 125px;
+  border-color: black;
+  border-style: solid;
+  border-width: 2px;
+}
+
+.rightUpper, .rightLower {
+  width: 125px;
+  height: 300px;
+  border-color: black;
+  border-style: solid;
+  border-width: 2px;
+}
+
+
+/***  Minimum viewport 480px mobile landscape  ***/
+@media screen and (min-width: 480px) {
+  .mainHeader {
+    width: 400px;
+  }
+
+  .js-mainWindow {
+    width: 400px;
+  }
+
+  .leftPanel {
+    width: 250px;
+  }
+
+  .rightPanel, .rightUpper, .rightLower {
+    width: 150px;
+  }    
+}
+
+/***  Minimum viewport 768px iPad portrait  ***/
+@media screen and (min-width: 768px) {
+  .mainHeader {
+    width: 500px;
+  }
+
+  .js-mainWindow {
+    width: 700px;
+  }
+
+  .leftPanel {
+    width: 400px;
+  }
+
+  .rightPanel, .rightUpper, .rightLower {
+    width: 300px;
+  }
+  
+/***  Minimum viewport 1024px PC screen  ***/
+@media screen and (min-width: 1024px) {
+  .mainHeader {
+    width: 500px;
+  }
+
+  .js-mainWindow {
+    width: 950px;
+  }
+
+  .leftPanel {
+    width: 550px;
+  }
+
+  .rightPanel, .rightUpper, .rightLower {
+    width: 400px;
+  }
+}
