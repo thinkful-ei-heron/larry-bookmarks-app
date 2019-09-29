@@ -8,7 +8,7 @@
 body {
   display: flex;
   flex-direction: column;
-  align-items: center; 
+  align-items: center;
 }
 
 .mainHeader {
@@ -22,15 +22,10 @@ h1 {
   font-size: 24px;
 }
 
-body {
+.js-mainWindow, .js-mainAddBookmark {
   display: flex;
-
-}
-
-.js-mainWindow {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
+  flex-direction: column;
+  align-content: flex-start;
   width: 275px;
   height: 600px;
   border-color: black;
@@ -38,45 +33,54 @@ body {
   border-width: 2px;
 }
 
-h2, p, fieldset, input, button {
+.upperContainer {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  width: 275px;
+  height: 200px;
+  border-color: black;
+  border-style: solid;
+  border-width: 2px;
+}
+
+.newBookmark, .filterBy {
+  width: 137px;
+  height: 200px;
+  border-color: black;
+  border-style: solid;
+  border-width: 2px;
+}
+
+.bookmarks {
+  width: 275px;
+  height: 400px;
+  border-color: black;
+  border-style: solid;
+  border-width: 2px;    
+}
+
+h2, a, p, li, fieldset, input, button, select, option, label {
   font-size: 18px;
 }
 
-.mealForm input {
+.buttonNew, .js-filter {
   display: inline-block;
-  width: 150px;
+  width: 175px;
 }
 
-.mealForm button {
-  display: inline-block;
-  width: 150px;
+ul {
+  padding: 0 40px;
 }
 
-.leftPanel {
-  width: 150px;
-  border-color: black;
-  border-style: solid;
-  border-width: 2px;
+ul, ul .expanded {
+  width: 275px;
+  list-style-type: none;
 }
 
-.rightPanel {
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-  width: 125px;
-  border-color: black;
-  border-style: solid;
-  border-width: 2px;
+ul .expanded {
+  height: 140px;
 }
-
-.rightUpper, .rightLower {
-  width: 125px;
-  height: 300px;
-  border-color: black;
-  border-style: solid;
-  border-width: 2px;
-}
-
 
 /***  Minimum viewport 480px mobile landscape  ***/
 @media screen and (min-width: 480px) {
@@ -88,13 +92,25 @@ h2, p, fieldset, input, button {
     width: 400px;
   }
 
-  .leftPanel {
-    width: 250px;
+  .js-mainAddBookmark {
+    width: 400px;
   }
 
-  .rightPanel, .rightUpper, .rightLower {
-    width: 150px;
-  }    
+  .upperContainer {
+    width: 400px;
+  }
+  
+  .newBookmark, .filterBy {
+    width: 200px;
+  }
+
+  .bookmarks {
+    width: 400px;
+  }
+
+  ul, ul .expanded {
+    width: 400px;
+  }
 }
 
 /***  Minimum viewport 768px iPad portrait  ***/
@@ -103,33 +119,62 @@ h2, p, fieldset, input, button {
     width: 500px;
   }
 
+  h1 {
+    font-size: 26px;
+  }
+
   .js-mainWindow {
     width: 700px;
   }
 
-  .leftPanel {
+  .js-mainAddBookmark {
     width: 400px;
   }
 
-  .rightPanel, .rightUpper, .rightLower {
-    width: 300px;
+  .upperContainer {
+    width: 700px;
   }
+
+  .newBookmark, .filterBy {
+    width: 350px;
+  }
+
+  .bookmarks {
+    width: 700px;
+  }
+
+  ul, ul .expanded {
+    width: 700px;
+  }
+}  
   
 /***  Minimum viewport 1024px PC screen  ***/
 @media screen and (min-width: 1024px) {
-  .mainHeader {
-    width: 500px;
+  h1 {
+    font-size: 28px;
   }
 
   .js-mainWindow {
-    width: 950px;
+    width: 850px;
   }
 
-  .leftPanel {
-    width: 550px;
-  }
-
-  .rightPanel, .rightUpper, .rightLower {
+  .js-mainAddBookmark {
     width: 400px;
+  }
+
+  .upperContainer {
+    width: 850px;
+  }
+
+  .newBookmark, .filterBy {
+    width: 425px;
+  }
+
+  .bookmarks {
+    width: 850px;
+  }
+
+  ul, ul .expanded {
+    width: 850px;
   }
 }

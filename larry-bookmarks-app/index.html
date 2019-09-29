@@ -3,26 +3,51 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="WaitStaff Calculator">
-    <title>Waitstaff Calculator</title>
+    <meta name="description" content="Bookmark App">
+    <title>Bookmark Application</title>
     <link rel="shortcut icon" href="#">
-    <link href="./styles/reset.css" rel="stylesheet" type="text/css" />
+    <link href="./reset.css" rel="stylesheet" type="text/css" />    
+    <link href="https://necolas.github.io/normalize.css/8.0.1/normalize.css" rel="stylesheet" type="text/css" />
     <link href="./styles/styles.css" rel="stylesheet" type="text/css" />
   </head>
-  
+
   <body>
     <header role="banner">
-      <h1 class="mainHeader">Waitstaff Calculator</h1>
+      <h1 class="mainHeader">Bookmarks</h1>
     </header>
 
     <main role="main" class="js-mainWindow" aria-live="assertive">
-
+      <section class="upperContainer">
+        <div class="newBookmark">
+          <label for="buttonNB">New Bookmark:</label><br>
+          <button class="buttonNew" name="buttonNB" type="button">+ New Bookmark</button>
+          <br><a href="./addBookmark.html">New Bookmark</a>
+        </div>
+        <div class="filterBy">
+          <label for="filter">Filter By: </label><br>          
+          <select id="js-filter" name="filter">
+            <option value="" selected="selected">Filter</option>            
+            <option value="oneStar">One Star</option>
+            <option value="twoStar">Two Star</option>
+            <option value="threeStar">Three Star</option>
+            <option value="fourStar">Four Star</option>
+            <option value="fiveStar">Five Star</option>                                                
+          </select>
+        </div> -->
+      </section>
+      <section class="bookmarks">
+      <ul>
+        <li>Bookmark#1</li>
+        <li>Bookmark#2</li>
+        <li>Bookmark#3</li>
+        <li>Bookmark#4</li>
+        <li>Bookmark#5</li>                                
+      </ul>
+        <br><a href="./expanded.html">expanded.html</a>
+      </section>
     </main>
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script type="module" src='./jscript/meal.js'></script>
-    <script type="module" src='./jscript/charges.js'></script>
-    <script type="module" src='./jscript/earnings.js'></script>        
-    <script type="module" src='./jscript/main.js'></script>
+    <script src="./jscript/index.js"></script>
   </body>
 </html>
