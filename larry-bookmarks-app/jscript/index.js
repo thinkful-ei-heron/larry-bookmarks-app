@@ -24,18 +24,6 @@ const store = {
   filter: 0
 };
 
-function render(myScreen) {
-  switch(myScreen) {
-  case 'main': {
-    let htmlString = generateMainString();
-    $('.js-mainWindow').html(htmlString);    
-  }
-    break;
-
-  }  
-
-}
-
 function generateMainString() {
   return `<section class="upperContainer">
             <div class="newBookmark">
@@ -63,6 +51,46 @@ function generateMainString() {
               <li>Bookmark#5</li>                                
             </ul>
           </section>`;
+}
+
+function generateAddString() {
+  return `<form class="addBookmarkForm">
+            <fieldset name="formField">
+              <label for="newBookName">Add New Bookmark:</label>
+              <input type="text" name="newBookName" placeholder="http://www.newsite.com"><br>
+              <label for="newBookNick">Nickname:</label>
+              <input type="text" name="newBookName" placeholder="Nickname"><br>
+              <label for="newBookDesc">Description:</label>
+              <input type="text" name="newBookDesc" placeholder="Description"><br>
+              <label for="addFilter">Star Rating: </label><br>          
+              <select id="js-addFilter" name="addFilter">
+                <option value="" selected="selected">Filter</option>            
+                <option value="oneStar">One Star</option>
+                <option value="twoStar">Two Star</option>
+                <option value="threeStar">Three Star</option>
+                <option value="fourStar">Four Star</option>
+                <option value="fiveStar">Five Star</option>                                                
+              </select><br>
+              <button class="buttonAddSubmit" type="submit">Submit</button>
+              <button class="buttonAddCancel" type="reset">Cancel</button>
+            </fieldset>
+          </form>
+          `;
+}
+
+function render(myScreen) {
+  switch(myScreen) {
+  case 'main': {
+    let htmlString = generateMainString();
+    $('.js-mainWindow').html(htmlString);
+  }
+    break;
+  case 'add': {
+    let htmlString = generateAddString();
+    $('.js-mainWindow').html(htmlString);        
+  }
+    break;
+  }
 }
 
 function initialize() {
