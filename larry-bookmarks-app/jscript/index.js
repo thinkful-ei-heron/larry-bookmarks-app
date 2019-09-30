@@ -24,6 +24,14 @@ const store = {
   filter: 0
 };
 
+function formBookmarkListItems() {
+  let itemString = '';
+  store.bookmarks.forEach(function(bookmark) {
+    itemString += `<li>${bookmark.title}</li>`;
+  });
+  return itemString;
+}
+
 function generateMainString() {
   return `<section class="upperContainer">
             <div class="newBookmark">
@@ -44,11 +52,7 @@ function generateMainString() {
           </section>
           <section class="bookmarks">
             <ul>
-              <li>Bookmark#1</li>
-              <li>Bookmark#2</li>
-              <li>Bookmark#3</li>
-              <li>Bookmark#4</li>
-              <li>Bookmark#5</li>                                
+              ${formBookmarkListItems()}
             </ul>
           </section>`;
 }
@@ -56,14 +60,14 @@ function generateMainString() {
 function generateAddString() {
   return `<form class="addBookmarkForm">
             <fieldset name="formField">
-              <label for="newBookName">Add New Bookmark:</label>
-              <input type="text" name="newBookName" placeholder="http://www.newsite.com"><br>
+              <label for="newBookLink">Add New Bookmark:</label>
+              <input id="newBookLink" type="text" name="newBookLink" placeholder="http://www.newsite.com"><br>
               <label for="newBookNick">Nickname:</label>
-              <input type="text" name="newBookName" placeholder="Nickname"><br>
+              <input id="newBookNick" type="text" name="newBookNick" placeholder="Nickname"><br>
               <label for="newBookDesc">Description:</label>
-              <input type="text" name="newBookDesc" placeholder="Description"><br>
+              <input id='newBookDesc' type="text" name="newBookDesc" placeholder="Description"><br>
               <label for="addFilter">Star Rating: </label><br>          
-              <select id="js-addFilter" name="addFilter">
+              <select id="newFilter" name="addFilter">
                 <option value="" selected="selected">Filter</option>            
                 <option value="oneStar">One Star</option>
                 <option value="twoStar">Two Star</option>
@@ -98,15 +102,33 @@ function initialize() {
 }
 
 function handleAddBookmark() {
-  $('.buttonNew').on('click', function (event) {
-    console.log(`Click Button Add Bookmark, ${JSON.stringify(event)}`);
+  $('.buttonNew').on('click', function () {
     render('add');
+  });
+}
+
+function handleSubmitBookmark() {
+  $('.js-mainWindow').on('submit', '.addBookmarkForm', function (event) {
+    event.preventDefault();
+    let newBookmark = {
+      id: cuid(),
+      title: `${$(this).find('#newBookNick').val()}`,
+      rating: `${$(this).find('#newFilter').val()}`,
+      url: `${$(this).find('#newBookLink').val()}`,
+      description: `${$(this).find('#newBookDesc').val()}`,
+      expanded: false      
+    };
+    store.bookmarks.push(newBookmark);
+    console.log(`Click Button Submit Bookmark, ${JSON.stringify(event)}`);
+    console.log(`Now store is ${JSON.stringify(store)}`);        
+    render('main');
   });
 }
 
 function main() {
   initialize();
   handleAddBookmark();
+  handleSubmitBookmark();
 }
 
 main ();
