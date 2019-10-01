@@ -83,18 +83,17 @@ function generateAddString() {
 }
 
 function render(myScreen) {
-  switch(myScreen) {
-  case 'main': {
-    let htmlString = generateMainString();
-    $('.js-mainWindow').html(htmlString);
+  let htmlString;
+  switch (myScreen) {
+    case 'main':
+      htmlString = generateMainString();
+      break;
+
+    case 'add':
+      htmlString = generateAddString();
+      break;
   }
-    break;
-  case 'add': {
-    let htmlString = generateAddString();
-    $('.js-mainWindow').html(htmlString);        
-  }
-    break;
-  }
+  $('.js-mainWindow').html(htmlString);
 }
 
 function initialize() {
@@ -119,8 +118,6 @@ function handleSubmitBookmark() {
       expanded: false      
     };
     store.bookmarks.push(newBookmark);
-    console.log(`Click Button Submit Bookmark, ${JSON.stringify(event)}`);
-    console.log(`Now store is ${JSON.stringify(store)}`);        
     render('main');
   });
 }
