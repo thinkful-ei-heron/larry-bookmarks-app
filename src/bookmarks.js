@@ -1,28 +1,8 @@
 /* eslint-disable no-console */
+import $ from 'jquery';
+import cuid from 'cuid';
 
-const store = {
-  bookmarks: [
-    {
-      id: 'x56w',
-      title: 'Title 1',
-      rating: 3,
-      url: 'http://www.title1.com',
-      description: 'lorem ipsum dolor sit',
-      expanded: false
-    },
-    {
-      id: '6ffw',
-      title: 'Title 2',
-      rating: 5,
-      url: 'http://www.title2.com',
-      description: 'dolorum tempore deserunt',
-      expanded: false
-    } 
-  ],
-  adding: false,
-  error: null,
-  filter: 0
-};
+import store from './store.js';
 
 function formBookmarkListItems() {
   let itemString = '';
@@ -85,13 +65,13 @@ function generateAddString() {
 function render(myScreen) {
   let htmlString;
   switch (myScreen) {
-    case 'main':
-      htmlString = generateMainString();
-      break;
+  case 'main':
+    htmlString = generateMainString();
+    break;
 
-    case 'add':
-      htmlString = generateAddString();
-      break;
+  case 'add':
+    htmlString = generateAddString();
+    break;
   }
   $('.js-mainWindow').html(htmlString);
 }
@@ -122,10 +102,13 @@ function handleSubmitBookmark() {
   });
 }
 
-function main() {
-  initialize();
+function bindEventListeners() {
   handleAddBookmark();
   handleSubmitBookmark();
 }
 
-main ();
+export default {
+  initialize,
+  bindEventListeners,
+  render
+};
