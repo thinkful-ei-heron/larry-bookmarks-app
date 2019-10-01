@@ -7,7 +7,16 @@ import store from './store.js';
 function formBookmarkListItems() {
   let itemString = '';
   store.bookmarks.forEach(function(bookmark) {
-    itemString += `<li>${bookmark.title}</li>`;
+    if(bookmark.expanded) {
+      itemString += `<li class="js-bookmark-element" data-bookmark-id="${bookmark.id}">${bookmark.title}
+                       <p>Visit: ${bookmark.url}</p>
+                       <p>Rating: ${bookmark.rating}</p>
+                       <p>${bookmark.description}</p>                         
+                     </li>`;
+    }
+    else {
+      itemString += `<li class="js-bookmark-element" data-bookmark-id="${bookmark.id}">${bookmark.title}</li>`;
+    }
   });
   return itemString;
 }
@@ -31,7 +40,7 @@ function generateMainString() {
             </div> -->
           </section>
           <section class="bookmarks">
-            <ul>
+            <ul class="js-ulBookmarks">
               ${formBookmarkListItems()}
             </ul>
           </section>`;
@@ -80,9 +89,23 @@ function initialize() {
   render('main');
 }
 
+function getTitleIdFromElement(bookmark) {
+  return $(bookmark)
+    .closest('.js-bookmark-element')
+    .data('bookmark-id');
+}
+
 function handleAddBookmark() {
   $('.buttonNew').on('click', function () {
     render('add');
+  });
+}
+
+function handleExpandClick() {
+  $('.js-mainWindow').on('click', 'li', function(event) {
+    const id = getTitleIdFromElement(event.currentTarget);
+    store.toggleExpanded(id);
+    render('main');
   });
 }
 
@@ -104,6 +127,7 @@ function handleSubmitBookmark() {
 
 function bindEventListeners() {
   handleAddBookmark();
+  handleExpandClick();
   handleSubmitBookmark();
 }
 

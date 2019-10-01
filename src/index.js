@@ -7,7 +7,7 @@ import bookmarks from './bookmarks';
 function main() {
   bookmarks.initialize();
   bookmarks.bindEventListeners();
-  bookmarks.render();
+  bookmarks.render('main');
 }
 
 main ();

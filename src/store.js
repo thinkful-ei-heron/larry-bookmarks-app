@@ -20,9 +20,21 @@ let adding = false;
 let error = null;
 let filter = 0;
 
+function findById(id) {
+  return this.bookmarks.find(currentBookmark => currentBookmark.id === id);
+}
+
+function toggleExpanded(id) {
+  const bookmark = this.bookmarks.find(currentBookmark => currentBookmark.id === id);
+  bookmark.expanded = !bookmark.expanded;
+
+}
+
 export default {
   bookmarks,
   adding,
   error,
-  filter
+  filter,
+  findById,
+  toggleExpanded
 };
