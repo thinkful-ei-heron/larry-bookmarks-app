@@ -167,10 +167,9 @@ ul {
 
 .jsBookmarkElement p {
   padding: 0 20px;
-  font-size: 16px;
 }
 
-.jsBookmarkElement a {
+.jsBookmarkElement a, .jsBookmarkElement p, .buttonDel {
   font-size: 16px;
 }
 
@@ -181,9 +180,13 @@ ul {
   justify-content: center;  
 }
 
-h2, li, span, fieldset, input, option, .errorContent {
+h2, li, span, fieldset, input, .errorContent {
   font-size: 18px;
-}  
+}
+
+option {
+  font-size: 16px;
+}
 
 /***  Minimum viewport 480px mobile landscape  ***/
 @media screen and (min-width: 480px) {
@@ -223,13 +226,17 @@ h2, li, span, fieldset, input, option, .errorContent {
     width: 80px;
   }  
 
-  .jsBookmarkElement p, .jsBookmarkElement a {
+  .jsBookmarkElement a, .jsBookmarkElement p, .buttonDel {
     font-size: 18px;
   }  
 
-  h2, li, fieldset, input, option, .errorContent, .errorContent p {
+  h2, li, fieldset, input, .errorContent, .errorContent p {
     font-size: 20px;
-  }      
+  }
+
+  option {
+    font-size: 18px;
+  }  
 }
 
 /***  Minimum viewport 768px iPad portrait  ***/
@@ -270,12 +277,16 @@ h2, li, span, fieldset, input, option, .errorContent {
     width: 100px;
   }  
 
-  .jsBookmarkElement p, .jsBookmarkElement a {
+  .jsBookmarkElement a, .jsBookmarkElement p, .buttonDel {
     font-size: 20px;
   }
 
-  h2, li, fieldset, input, option, .errorContent {
+  h2, li, fieldset, input, .errorContent {
     font-size: 26px;
+  }
+
+  option {
+    font-size: 22px;
   }  
 }  
   
@@ -318,11 +329,15 @@ h2, li, span, fieldset, input, option, .errorContent {
     width: 100px;
   }
 
-  .jsBookmarkElement p, .jsBookmarkElement a {
+  .jsBookmarkElement a, .jsBookmarkElement p, .buttonDel {
     font-size: 20px;
   }
 
-  h2, li, fieldset, input, option, .errorContent {
+  h2, li, fieldset, input, .errorContent {
     font-size: 28px;
   }  
+
+  option {
+    font-size: 22px;
+  }
 }
