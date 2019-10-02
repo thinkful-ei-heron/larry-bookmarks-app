@@ -24,7 +24,11 @@ header {
   width: 250px;
   height: 80px;
   padding: 29px 0;
-  background-color: rgba(255, 210, 0, 0.50);  
+  background-color: rgba(255, 210, 0, 0.50);
+  border-color: rgb(175, 40, 210);
+  border-style: solid;
+  border-radius: 30px;
+  border-width: 2px;
   font-size: 22px;
   color: rgb(105, 25, 140);
   font-style: oblique;
@@ -34,10 +38,11 @@ header {
 
 .js-mainWindow, .js-mainAddBookmark {
   border-color: rgb(175, 40, 210);
-  border-style: outset;
+  border-style: solid;
   border-radius: 30px;
   border-width: 5px;
   font-family: 'Source Sans Pro', sans-serif;
+  color: rgb(105, 25, 140);  
 }
 
 .js-mainWindow, .js-mainAddBookmark {
@@ -71,9 +76,9 @@ header {
   align-items: center;
   justify-content: center;
   width: 137px;
-  height: 170px;
-  background-color: rgb(255, 230, 220);  
-  color: rgb(175, 45, 200);  
+  height: 140px;
+  background-color: rgb(255, 230, 220);
+  color: rgb(105, 25, 140);
 }
 
 .bookmarks {
@@ -81,16 +86,40 @@ header {
   height: 400px;
   border-color: rgb(175, 40, 210);
   border-style: solid none none none;
-  border-width: 2px;  
+  border-width: 2px;
 }
 
-h2, a, p, li, fieldset, input, button, select, option, label {
-  font-size: 18px;
+.addBookmarkForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 275px;
+  height: 600px;
 }
 
-.buttonNew, .js-filter .deleteBookmark {
+.buttonNew, #js-filter, .buttonDel, #newFilter, .buttonAddSubmit,
+.buttonAddCancel, .addBookmarkForm input {
   display: inline-block;
-  width: 175px;
+  height: 60px;
+  width: 90px;
+  background-color: rgb(255, 230, 180);  
+  border-color: rgb(175, 40, 210);
+  border-style: solid;
+  border-radius: 10px;
+  border-width: 2px;  
+  color: rgb(105, 25, 140);  
+  font-size: 18px;
+  text-align: center;
+}
+
+#newFilter, .addBookmarkForm input {
+  width: 200px;
+}
+
+#js-filter, #newFilter {
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 ul {
@@ -106,6 +135,10 @@ ul .expanded {
   height: 140px;
 }
 
+h2, a, p, li, fieldset, input, option {
+  font-size: 18px;
+}  
+
 /***  Minimum viewport 480px mobile landscape  ***/
 @media screen and (min-width: 480px) {
   .mainHeader {
@@ -114,18 +147,10 @@ ul .expanded {
     padding: 27px, 0;
   }
 
-  .js-mainWindow {
+  .js-mainWindow, .addBookmarkForm, .upperContainer {
     width: 400px;
   }
 
-  .js-mainAddBookmark {
-    width: 400px;
-  }
-
-  .upperContainer {
-    width: 400px;
-  }
-  
   .newBookmark, .filterBy {
     width: 200px;
   }
@@ -137,6 +162,19 @@ ul .expanded {
   ul, ul .expanded {
     width: 400px;
   }
+
+  #newFilter, .addBookmarkForm input {
+    width: 300px;
+  }  
+
+  .buttonNew, #js-filter, .buttonDel {
+    width: 100px;
+    font-size: 18px;
+  }
+
+  h2, a, p, li, fieldset, input, option {
+    font-size: 20px;
+  }      
 }
 
 /***  Minimum viewport 768px iPad portrait  ***/
@@ -147,15 +185,7 @@ ul .expanded {
     padding: 24px 0;
   }
 
-  .js-mainWindow {
-    width: 700px;
-  }
-
-  .js-mainAddBookmark {
-    width: 400px;
-  }
-
-  .upperContainer {
+  .js-mainWindow, .addBookmarkForm, .upperContainer {
     width: 700px;
   }
 
@@ -170,6 +200,19 @@ ul .expanded {
   ul, ul .expanded {
     width: 700px;
   }
+
+  #newFilter, .addBookmarkForm input {
+    width: 500px;
+  }  
+
+  .buttonNew, #js-filter, .buttonDel {
+    width: 170px;
+    font-size: 22px;
+  }  
+
+  h2, a, p, li, fieldset, input, option {
+    font-size: 26px;
+  }  
 }  
   
 /***  Minimum viewport 1024px PC screen  ***/
@@ -180,15 +223,7 @@ ul .expanded {
     padding: 22px 0;
   }
 
-  .js-mainWindow {
-    width: 850px;
-  }
-
-  .js-mainAddBookmark {
-    width: 400px;
-  }
-
-  .upperContainer {
+  .js-mainWindow, .addBookmarkForm, .upperContainer {
     width: 850px;
   }
 
@@ -198,9 +233,23 @@ ul .expanded {
 
   .bookmarks {
     width: 840px;
+    font-size: 24px;
   }
 
   ul, ul .expanded {
     width: 850px;
   }
+
+  #newFilter, .addBookmarkForm input {
+    width: 500px;
+  }
+
+  .buttonNew, #js-filter, .buttonDel {
+    width: 225px;
+    font-size: 24px;
+  }
+
+  h2, a, p, li, fieldset, input, option {
+    font-size: 26px;
+  }  
 }
