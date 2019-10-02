@@ -42,11 +42,9 @@ function formBookmarkListItems() {
 function generateMainString() {
   return `<section class="upperContainer">
             <div class="newBookmark">
-              <label for="buttonNB">New Bookmark:</label><br>
               <button class="buttonNew" name="buttonNB" type="button">New Bookmark</button>
             </div>
             <div class="filterBy">
-              <label for="filter">Filter By: </label><br>          
               <select id="js-filter" name="filter">
                 <option value="" selected="selected">Filter</option>            
                 <option value="1">One Star</option>
