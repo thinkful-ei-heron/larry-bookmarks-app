@@ -132,6 +132,10 @@ header {
   text-align: center;
 }
 
+#js-filter, #newFilter {
+  text-align-last: center;
+}
+
 #newFilter, .addBookmarkForm input {
   width: 200px;
   padding: 2px;
@@ -180,7 +184,7 @@ h2, li, fieldset, input, option, .errorContent {
   }
 
   .newBookmark, .filterBy {
-    width: 200px;
+    width: 196px;
   }
 
   .bookmarks {
