@@ -1,5 +1,6 @@
-/***  Minimum viewport 320px mobile portrait  ***/
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display|Source+Sans+Pro&display=swap');
 
+/***  Minimum viewport 320px mobile portrait  ***/
 * {
   box-sizing: border-box;
   font-size: 0;
@@ -167,7 +168,14 @@ ul {
   font-size: 16px;
 }
 
-h2, li, fieldset, input, option, .errorContent {
+.errorContent {
+  display: flex;
+  flex-direction:column;
+  align-items: center;
+  justify-content: center;  
+}
+
+h2, li, span, fieldset, input, option, .errorContent {
   font-size: 18px;
 }  
 

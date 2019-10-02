@@ -8,12 +8,21 @@ import api from './api.js';
 function renderError() {
   if(store.error) {
     return `<section class="errorContent">
-              <p>${store.getError()}</p>
+              <p>Error: ${store.getError()}</p>
               <button id="cancelError">OK</button>
             </section>`;
 
   }
   return '';
+}
+
+function generateStarRating (numStars) {
+  let starString = '';
+  for (let i = 0; i < 5; i++) {
+    if (i < numStars) starString += '&#9733;';
+    else starString += '&#9734;';
+  }
+  return starString;
 }
 
 function formBookmarkListItems() {
@@ -23,7 +32,7 @@ function formBookmarkListItems() {
       if(bookmark.expanded) {
         itemString += `<li class="jsBookmarkElement" data-bookmark-id="${bookmark.id}">${bookmark.title}
                          <p>Visit Site: <a href=${bookmark.url}>${bookmark.url}</a></p>
-                         <p>Rating: ${bookmark.rating}</p>
+                         <p>Rating: ${generateStarRating(bookmark.rating)}</p>
                          <p>${bookmark.desc}</p>
                          <div class="deleteBookmark">
                            <label for="buttonDelete">Delete Bookmark: </label>
@@ -32,7 +41,10 @@ function formBookmarkListItems() {
                      </li>`;
       }
       else {
-        itemString += `<li class="jsBookmarkElement" data-bookmark-id="${bookmark.id}">${bookmark.title}</li>`;
+        itemString += `<li class="jsBookmarkElement" data-bookmark-id="${bookmark.id}">
+                         <span class="stars">${generateStarRating(bookmark.rating)}</span>
+                         ${bookmark.title}
+                       </li>`;
       }
     }
   });
@@ -65,8 +77,11 @@ function generateMainString() {
 function generateAddString() {
   return `<form class="addBookmarkForm">
             <fieldset name="formField">
+              <label for="newBookLink">New Bookmark Link</label>
               <input id="newBookLink" type="text" name="newBookLink" placeholder="http://www.newsite.com"><br>
+              <label for="newBookNick">New Bookmark Nickname</label>
               <input id="newBookNick" type="text" name="newBookNick" placeholder="Nickname"><br>
+              <label for="newBookDesc">New Bookmark Description</label>
               <input id='newBookDesc' type="text" name="newBookDesc" placeholder="Description"><br>
               <select id="newFilter" name="addFilter">
                 <option value="" selected="selected">Filter</option>            
