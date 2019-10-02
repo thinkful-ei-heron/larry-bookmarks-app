@@ -9,7 +9,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: rgb(255, 165, 0);  
+  background-color: rgb(255, 165, 0);
 }
 
 header {
@@ -22,9 +22,10 @@ header {
 
 .mainHeader {
   width: 250px;
-  height: 80px;
+  height: 84px;
   padding: 29px 0;
-  background-color: rgba(255, 210, 0, 0.50);
+  background-color: rgba(255, 220, 0, 0.80);
+  box-shadow: 10px 10px 5px gray;
   border-color: rgb(175, 40, 210);
   border-style: solid;
   border-radius: 30px;
@@ -51,7 +52,6 @@ header {
   align-items: flex-start;
   background-color: rgb(255, 230, 220);
   width: 275px;
-  height: 600px;
 }
 
 .upperContainer {
@@ -83,7 +83,7 @@ header {
 
 .bookmarks {
   width: 275px;
-  height: 400px;
+  padding: 20px 0 40px 0;  
   border-color: rgb(175, 40, 210);
   border-style: solid none none none;
   border-width: 2px;
@@ -95,11 +95,29 @@ header {
   align-items: center;
   justify-content: center;
   width: 275px;
-  height: 600px;
+  padding: 20px 0 40px 0;  
+}
+
+.addBookmarkForm fieldset {
+  display: flex;
+  flex-direction:column;
+  align-items: center;
+  justify-content: center;
+  border-style: none;
+}
+
+.subCancelDiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 200px;
+  height: 80px;
+  padding: 10px 0;
 }
 
 .buttonNew, #js-filter, .buttonDel, #newFilter, .buttonAddSubmit,
-.buttonAddCancel, .addBookmarkForm input {
+.buttonAddCancel, .addBookmarkForm input, #cancelError {
   display: inline-block;
   height: 60px;
   width: 90px;
@@ -108,6 +126,7 @@ header {
   border-style: solid;
   border-radius: 10px;
   border-width: 2px;  
+  box-shadow: 7px 7px 6px gray;  
   color: rgb(105, 25, 140);  
   font-size: 18px;
   text-align: center;
@@ -115,6 +134,9 @@ header {
 
 #newFilter, .addBookmarkForm input {
   width: 200px;
+  padding: 2px;
+  margin: 7px;
+  font-size: 20px;  
 }
 
 #js-filter, #newFilter {
@@ -123,19 +145,25 @@ header {
 }
 
 ul {
-  padding: 0 40px;
-}
-
-ul, ul .expanded {
   width: 275px;
-  list-style-type: none;
+  padding: 20px 40px;
+  list-style-type: none;    
 }
 
-ul .expanded {
-  height: 140px;
+.jsBookmarkElement {
+  padding: 10px 0;
 }
 
-h2, a, p, li, fieldset, input, option {
+.jsBookmarkElement p {
+  padding: 0 20px;
+  font-size: 16px;
+}
+
+.jsBookmarkElement a {
+  font-size: 16px;
+}
+
+h2, li, fieldset, input, option, .errorContent {
   font-size: 18px;
 }  
 
@@ -163,8 +191,9 @@ h2, a, p, li, fieldset, input, option {
     width: 400px;
   }
 
-  #newFilter, .addBookmarkForm input {
+  #newFilter, .addBookmarkForm input, .subCancelDiv {
     width: 300px;
+    font-size: 22px;    
   }  
 
   .buttonNew, #js-filter, .buttonDel {
@@ -172,7 +201,11 @@ h2, a, p, li, fieldset, input, option {
     font-size: 18px;
   }
 
-  h2, a, p, li, fieldset, input, option {
+  .jsBookmarkElement p, .jsBookmarkElement a {
+    font-size: 18px;
+  }  
+
+  h2, li, fieldset, input, option, .errorContent, .errorContent p {
     font-size: 20px;
   }      
 }
@@ -201,8 +234,9 @@ h2, a, p, li, fieldset, input, option {
     width: 700px;
   }
 
-  #newFilter, .addBookmarkForm input {
+  #newFilter, .addBookmarkForm input, .subCancelDiv {
     width: 500px;
+    font-size: 24px;    
   }  
 
   .buttonNew, #js-filter, .buttonDel {
@@ -210,7 +244,11 @@ h2, a, p, li, fieldset, input, option {
     font-size: 22px;
   }  
 
-  h2, a, p, li, fieldset, input, option {
+  .jsBookmarkElement p, .jsBookmarkElement a {
+    font-size: 20px;
+  }  
+
+  h2, li, fieldset, input, option, .errorContent {
     font-size: 26px;
   }  
 }  
@@ -240,8 +278,9 @@ h2, a, p, li, fieldset, input, option {
     width: 850px;
   }
 
-  #newFilter, .addBookmarkForm input {
+  #newFilter, .addBookmarkForm input, .subCancelDiv {
     width: 500px;
+    font-size: 24px;
   }
 
   .buttonNew, #js-filter, .buttonDel {
@@ -249,7 +288,11 @@ h2, a, p, li, fieldset, input, option {
     font-size: 24px;
   }
 
-  h2, a, p, li, fieldset, input, option {
-    font-size: 26px;
+  .jsBookmarkElement p, .jsBookmarkElement a {
+    font-size: 20px;
+  }
+
+  h2, li, fieldset, input, option, .errorContent {
+    font-size: 28px;
   }  
 }

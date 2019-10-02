@@ -21,7 +21,7 @@ function formBookmarkListItems() {
   store.bookmarks.forEach(function(bookmark) {
     if(bookmark.rating >= store.filter) {  
       if(bookmark.expanded) {
-        itemString += `<li class="js-bookmark-element" data-bookmark-id="${bookmark.id}">${bookmark.title}
+        itemString += `<li class="jsBookmarkElement" data-bookmark-id="${bookmark.id}">${bookmark.title}
                          <p>Visit Site: <a href=${bookmark.url}>${bookmark.url}</a></p>
                          <p>Rating: ${bookmark.rating}</p>
                          <p>${bookmark.desc}</p>
@@ -32,7 +32,7 @@ function formBookmarkListItems() {
                      </li>`;
       }
       else {
-        itemString += `<li class="js-bookmark-element" data-bookmark-id="${bookmark.id}">${bookmark.title}</li>`;
+        itemString += `<li class="jsBookmarkElement" data-bookmark-id="${bookmark.id}">${bookmark.title}</li>`;
       }
     }
   });
@@ -65,13 +65,9 @@ function generateMainString() {
 function generateAddString() {
   return `<form class="addBookmarkForm">
             <fieldset name="formField">
-              <label for="newBookLink">Add New Bookmark:</label>
               <input id="newBookLink" type="text" name="newBookLink" placeholder="http://www.newsite.com"><br>
-              <label for="newBookNick">Nickname:</label>
               <input id="newBookNick" type="text" name="newBookNick" placeholder="Nickname"><br>
-              <label for="newBookDesc">Description:</label>
               <input id='newBookDesc' type="text" name="newBookDesc" placeholder="Description"><br>
-              <label for="addFilter">Star Rating: </label>        
               <select id="newFilter" name="addFilter">
                 <option value="" selected="selected">Filter</option>            
                 <option value="1">One Star</option>
@@ -79,13 +75,14 @@ function generateAddString() {
                 <option value="3">Three Star</option>
                 <option value="4">Four Star</option>
                 <option value="5">Five Star</option>                                                
-              </select><br>
-              <button class="buttonAddSubmit" type="submit">Submit</button>
-              <button class="buttonAddCancel" type="reset">Cancel</button>
+              </select>
+              <div class="subCancelDiv">
+                <button class="buttonAddSubmit" type="submit">Submit</button>
+                <button class="buttonAddCancel" type="reset">Cancel</button>
+              </div>
+              ${renderError()}              
             </fieldset>
-          </form>
-          ${renderError()}
-          `;
+          </form>`;
 }
 
 function render(myScreen) {
@@ -112,7 +109,7 @@ function initialize() {
 
 function getTitleIdFromElement(bookmark) {
   return $(bookmark)
-    .closest('.js-bookmark-element')
+    .closest('.jsBookmarkElement')
     .data('bookmark-id');
 }
 
