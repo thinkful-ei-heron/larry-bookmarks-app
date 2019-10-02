@@ -58,12 +58,12 @@ function generateMainString() {
             </div>
             <div class="filterBy">
               <select id="js-filter" name="filter">
-                <option value="" selected="selected">Filter</option>            
-                <option value="1">One Star</option>
-                <option value="2">Two Star</option>
-                <option value="3">Three Star</option>
-                <option value="4">Four Star</option>
-                <option value="5">Five Star</option>                                                
+                <option value="" selected="selected">Rating Filter</option>            
+                <option value="1">${generateStarRating(1)}</option>
+                <option value="2">${generateStarRating(2)}</option>
+                <option value="3">${generateStarRating(3)}</option>
+                <option value="4">${generateStarRating(4)}</option>
+                <option value="5">${generateStarRating(5)}</option>                                                
               </select>
             </div> -->
           </section>
@@ -84,12 +84,12 @@ function generateAddString() {
               <label for="newBookDesc">New Bookmark Description</label>
               <input id='newBookDesc' type="text" name="newBookDesc" placeholder="Description"><br>
               <select id="newFilter" name="addFilter">
-                <option value="" selected="selected">Filter</option>            
-                <option value="1">One Star</option>
-                <option value="2">Two Star</option>
-                <option value="3">Three Star</option>
-                <option value="4">Four Star</option>
-                <option value="5">Five Star</option>                                                
+                <option value="" selected="selected">Rating</option>            
+                <option value="1">${generateStarRating(1)}</option>
+                <option value="2">${generateStarRating(2)}</option>
+                <option value="3">${generateStarRating(3)}</option>
+                <option value="4">${generateStarRating(4)}</option>
+                <option value="5">${generateStarRating(5)}</option>                                                
               </select>
               <div class="subCancelDiv">
                 <button class="buttonAddSubmit" type="submit">Submit</button>
