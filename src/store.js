@@ -1,24 +1,12 @@
-let bookmarks = [
-  {
-    id: 'x56w',
-    title: 'Title 1',
-    rating: 3,
-    url: 'http://www.title1.com',
-    description: 'lorem ipsum dolor sit',
-    expanded: false
-  },
-  {
-    id: '6ffw',
-    title: 'Title 2',
-    rating: 5,
-    url: 'http://www.title2.com',
-    description: 'dolorum tempore deserunt',
-    expanded: false
-  }];
-  
+let bookmarks = [];
 let adding = false;
 let error = null;
 let filter = 0;
+
+function addBookmark (bookmark) {
+  bookmark.expanded = false;
+  this.bookmarks.push(bookmark);
+}
 
 function findById(id) {
   return this.bookmarks.find(currentBookmark => currentBookmark.id === id);
@@ -27,7 +15,10 @@ function findById(id) {
 function toggleExpanded(id) {
   const bookmark = this.bookmarks.find(currentBookmark => currentBookmark.id === id);
   bookmark.expanded = !bookmark.expanded;
+}
 
+function findAndDelete(id) {
+  this.bookmarks = this.bookmarks.filter(currentItem => currentItem.id !== id);
 }
 
 export default {
@@ -35,6 +26,8 @@ export default {
   adding,
   error,
   filter,
+  addBookmark,
   findById,
-  toggleExpanded
+  toggleExpanded,
+  findAndDelete
 };

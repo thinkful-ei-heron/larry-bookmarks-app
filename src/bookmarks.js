@@ -3,15 +3,20 @@ import $ from 'jquery';
 import cuid from 'cuid';
 
 import store from './store.js';
+import api from './api.js';
 
 function formBookmarkListItems() {
   let itemString = '';
   store.bookmarks.forEach(function(bookmark) {
     if(bookmark.expanded) {
       itemString += `<li class="js-bookmark-element" data-bookmark-id="${bookmark.id}">${bookmark.title}
-                       <p>Visit: ${bookmark.url}</p>
+                       <p>Visit Site: <a href=${bookmark.url}>${bookmark.url}</a></p>
                        <p>Rating: ${bookmark.rating}</p>
-                       <p>${bookmark.description}</p>                         
+                       <p>${bookmark.desc}</p>
+                       <div class="deleteBookmark">
+                         <label for="buttonDelete">Delete Bookmark: </label>
+                         <button class="buttonDel" name="buttonDelete" type="button">Delete</button>
+                       </div>                    
                      </li>`;
     }
     else {
@@ -25,17 +30,17 @@ function generateMainString() {
   return `<section class="upperContainer">
             <div class="newBookmark">
               <label for="buttonNB">New Bookmark:</label><br>
-              <button class="buttonNew" name="buttonNB" type="button">+ New Bookmark</button>
+              <button class="buttonNew" name="buttonNB" type="button">New Bookmark</button>
             </div>
             <div class="filterBy">
               <label for="filter">Filter By: </label><br>          
               <select id="js-filter" name="filter">
                 <option value="" selected="selected">Filter</option>            
-                <option value="oneStar">One Star</option>
-                <option value="twoStar">Two Star</option>
-                <option value="threeStar">Three Star</option>
-                <option value="fourStar">Four Star</option>
-                <option value="fiveStar">Five Star</option>                                                
+                <option value="1">One Star</option>
+                <option value="2">Two Star</option>
+                <option value="3">Three Star</option>
+                <option value="4">Four Star</option>
+                <option value="5">Five Star</option>                                                
               </select>
             </div> -->
           </section>
@@ -58,11 +63,11 @@ function generateAddString() {
               <label for="addFilter">Star Rating: </label><br>          
               <select id="newFilter" name="addFilter">
                 <option value="" selected="selected">Filter</option>            
-                <option value="oneStar">One Star</option>
-                <option value="twoStar">Two Star</option>
-                <option value="threeStar">Three Star</option>
-                <option value="fourStar">Four Star</option>
-                <option value="fiveStar">Five Star</option>                                                
+                <option value="1">One Star</option>
+                <option value="2">Two Star</option>
+                <option value="3">Three Star</option>
+                <option value="4">Four Star</option>
+                <option value="5">Five Star</option>                                                
               </select><br>
               <button class="buttonAddSubmit" type="submit">Submit</button>
               <button class="buttonAddCancel" type="reset">Cancel</button>
@@ -86,7 +91,11 @@ function render(myScreen) {
 }
 
 function initialize() {
-  render('main');
+  api.getBookmarks()
+    .then((bookmarks) => {
+      bookmarks.forEach((bookmark) => store.addBookmark(bookmark));
+      render('main');
+    });    
 }
 
 function getTitleIdFromElement(bookmark) {
@@ -96,7 +105,7 @@ function getTitleIdFromElement(bookmark) {
 }
 
 function handleAddBookmark() {
-  $('.buttonNew').on('click', function () {
+  $('.js-mainWindow').on('click', '.buttonNew', function () {
     render('add');
   });
 }
@@ -117,11 +126,40 @@ function handleSubmitBookmark() {
       title: `${$(this).find('#newBookNick').val()}`,
       rating: `${$(this).find('#newFilter').val()}`,
       url: `${$(this).find('#newBookLink').val()}`,
-      description: `${$(this).find('#newBookDesc').val()}`,
-      expanded: false      
+      desc: `${$(this).find('#newBookDesc').val()}`
     };
-    store.bookmarks.push(newBookmark);
+    api.createBookmark(newBookmark)
+      .then((newBM) => {
+        store.addBookmark(newBM);
+        render('main');
+      })
+      .catch((err) => {
+ //       store.setError(err.message);
+ //       renderError();
+      });
+  });
+}
+
+function handleCancelBookmark() {
+  $('.js-mainWindow').on('click', '.buttonAddCancel', function () {
     render('main');
+  });
+}
+
+function handleDeleteBookmark() {
+  $('.js-mainWindow').on('click', '.buttonDel', function(event) {
+    const id = getTitleIdFromElement(event.currentTarget);
+
+    api.deleteBookmark(id)
+      .then(() => {
+        store.findAndDelete(id);
+        render('main');
+      })
+      .catch((err) => {
+        console.log(err);
+//        store.setError(err.message);
+//        renderError();
+      });
   });
 }
 
@@ -129,6 +167,8 @@ function bindEventListeners() {
   handleAddBookmark();
   handleExpandClick();
   handleSubmitBookmark();
+  handleCancelBookmark();
+  handleDeleteBookmark();
 }
 
 export default {

@@ -64,7 +64,7 @@ h2, a, p, li, fieldset, input, button, select, option, label {
   font-size: 18px;
 }
 
-.buttonNew, .js-filter {
+.buttonNew, .js-filter .deleteBookmark {
   display: inline-block;
   width: 175px;
 }
