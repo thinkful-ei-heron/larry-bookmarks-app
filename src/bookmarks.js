@@ -5,22 +5,35 @@ import cuid from 'cuid';
 import store from './store.js';
 import api from './api.js';
 
+function renderError() {
+  if(store.error) {
+    return `<section class="errorContent">
+              <p>${store.getError()}</p>
+              <button id="cancelError">OK</button>
+            </section>`;
+
+  }
+  return '';
+}
+
 function formBookmarkListItems() {
   let itemString = '';
   store.bookmarks.forEach(function(bookmark) {
-    if(bookmark.expanded) {
-      itemString += `<li class="js-bookmark-element" data-bookmark-id="${bookmark.id}">${bookmark.title}
-                       <p>Visit Site: <a href=${bookmark.url}>${bookmark.url}</a></p>
-                       <p>Rating: ${bookmark.rating}</p>
-                       <p>${bookmark.desc}</p>
-                       <div class="deleteBookmark">
-                         <label for="buttonDelete">Delete Bookmark: </label>
-                         <button class="buttonDel" name="buttonDelete" type="button">Delete</button>
+    if(bookmark.rating >= store.filter) {  
+      if(bookmark.expanded) {
+        itemString += `<li class="js-bookmark-element" data-bookmark-id="${bookmark.id}">${bookmark.title}
+                         <p>Visit Site: <a href=${bookmark.url}>${bookmark.url}</a></p>
+                         <p>Rating: ${bookmark.rating}</p>
+                         <p>${bookmark.desc}</p>
+                         <div class="deleteBookmark">
+                           <label for="buttonDelete">Delete Bookmark: </label>
+                           <button class="buttonDel" name="buttonDelete" type="button">Delete</button>
                        </div>                    
                      </li>`;
-    }
-    else {
-      itemString += `<li class="js-bookmark-element" data-bookmark-id="${bookmark.id}">${bookmark.title}</li>`;
+      }
+      else {
+        itemString += `<li class="js-bookmark-element" data-bookmark-id="${bookmark.id}">${bookmark.title}</li>`;
+      }
     }
   });
   return itemString;
@@ -60,7 +73,7 @@ function generateAddString() {
               <input id="newBookNick" type="text" name="newBookNick" placeholder="Nickname"><br>
               <label for="newBookDesc">Description:</label>
               <input id='newBookDesc' type="text" name="newBookDesc" placeholder="Description"><br>
-              <label for="addFilter">Star Rating: </label><br>          
+              <label for="addFilter">Star Rating: </label>        
               <select id="newFilter" name="addFilter">
                 <option value="" selected="selected">Filter</option>            
                 <option value="1">One Star</option>
@@ -73,6 +86,7 @@ function generateAddString() {
               <button class="buttonAddCancel" type="reset">Cancel</button>
             </fieldset>
           </form>
+          ${renderError()}
           `;
 }
 
@@ -131,16 +145,16 @@ function handleSubmitBookmark() {
     api.createBookmark(newBookmark)
       .then((newBM) => {
         store.addBookmark(newBM);
-        render('main');
+        render('main');        
       })
       .catch((err) => {
- //       store.setError(err.message);
- //       renderError();
+        store.setError(err.message);
+        render('add');        
       });
   });
 }
 
-function handleCancelBookmark() {
+function handleCancelAddBookmark() {
   $('.js-mainWindow').on('click', '.buttonAddCancel', function () {
     render('main');
   });
@@ -153,22 +167,39 @@ function handleDeleteBookmark() {
     api.deleteBookmark(id)
       .then(() => {
         store.findAndDelete(id);
-        render('main');
+        render('main');        
       })
       .catch((err) => {
-        console.log(err);
-//        store.setError(err.message);
-//        renderError();
+        store.setError(err.message);
+        render('add');        
       });
   });
+}
+
+function handleFilterSelect() {
+  $('.js-mainWindow').on('change','#js-filter', function() {
+    let filter = $(this).val();
+    store.setFilter(filter);
+    render('main');    
+  });
+}
+
+function handleErrorButtonClear() {
+  $('.js-mainWindow').on('click', '#cancelError', function () {
+    store.clearError();      
+    render('add');
+  });
+ 
 }
 
 function bindEventListeners() {
   handleAddBookmark();
   handleExpandClick();
   handleSubmitBookmark();
-  handleCancelBookmark();
+  handleCancelAddBookmark();
   handleDeleteBookmark();
+  handleFilterSelect();
+  handleErrorButtonClear();
 }
 
 export default {
