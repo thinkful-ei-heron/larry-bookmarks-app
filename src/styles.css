@@ -165,11 +165,13 @@ ul {
   padding: 10px 0;
 }
 
-.jsBookmarkElement:hover {
+.jsBookmarkElement:hover, .buttonNew:hover, #js-filter:hover, .buttonDel:hover, 
+  #newFilter:hover, .buttonAddSubmit:hover, .buttonAddCancel:hover, 
+  .addBookmarkForm input:hover, #cancelError:hover {
   background-color: rgb(255, 210, 200);
 }
 
-.jsBookmarkElement p {
+.jsBookmarkElement p, .deleteBookmark {
   padding: 0 20px;
 }
 
@@ -190,6 +192,7 @@ h2, li, span, fieldset, input, .errorContent {
 
 option {
   font-size: 16px;
+  background-color: white;
 }
 
 /***  Minimum viewport 480px mobile landscape  ***/
