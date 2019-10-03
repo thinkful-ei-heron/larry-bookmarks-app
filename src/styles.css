@@ -165,6 +165,10 @@ ul {
   padding: 10px 0;
 }
 
+.jsBookmarkElement:hover {
+  background-color: rgb(255, 210, 200);
+}
+
 .jsBookmarkElement p {
   padding: 0 20px;
 }
